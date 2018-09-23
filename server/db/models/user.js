@@ -3,10 +3,29 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  name: {
+    type: Sequelize.STRING
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
+  },
+  status: {
+    type: Sequelize.STRING,
+    defaultValue: 'just getting started!',
+    validate: {
+      notEmpty: true,
+      isIn: [
+        [
+          'just getting started!',
+          'fermenting!',
+          'ready to bottle!',
+          'carbonating!',
+          'drink up!'
+        ]
+      ]
+    }
   },
   password: {
     type: Sequelize.STRING,

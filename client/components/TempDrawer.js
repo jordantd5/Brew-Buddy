@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 
 //maerial ui
 import {withStyles} from '@material-ui/core/styles'
@@ -20,34 +21,38 @@ class TemporaryDrawer extends React.Component {
       left: true
     }
   }
-  toggleDrawer = (side, open) => () => {
+  toggleDrawer = () => () => {
     this.setState({
-      left: open
+      left: false
     })
   }
 
   render() {
     const {classes} = this.props
-
     const sideList = (
       <div className={classes.list}>
-        <List>FIRST</List>
+        <List>
+          <Link to="/brews">
+            <h2>ALL BREWS</h2>
+          </Link>
+        </List>
         <Divider />
-        <List>SECOND</List>
+        <List>
+          <Link to={`/mybrews/${this.props.userId}`}>
+            <h2>MY BREWS</h2>
+          </Link>
+        </List>
       </div>
     )
 
     return (
       <div>
-        <Drawer
-          open={this.state.left}
-          onClose={this.toggleDrawer('left', false)}
-        >
+        <Drawer open={this.state.left} onClose={this.toggleDrawer()}>
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
+            onClick={this.toggleDrawer()}
+            onKeyDown={this.toggleDrawer()}
           >
             {sideList}
           </div>

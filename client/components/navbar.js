@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {logout, me} from '../store'
 import TempDrawer from './TempDrawer'
 
 //material ui
@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
-import {bindActionCreators} from 'redux'
 
 const styles = {
   root: {
@@ -24,6 +23,10 @@ const styles = {
   },
   menuButton: {
     marginLeft: -12,
+    marginRight: 20
+  },
+  img: {
+    height: 50,
     marginRight: 20
   }
 }
@@ -37,18 +40,24 @@ class Navbar extends React.Component {
     this.onClick = this.onClick.bind(this)
   }
 
+  componentDidMount() {
+    this.props.getUser()
+  }
+
   onClick() {
     this.setState({
       showMenu: true
     })
+    setTimeout(() => {
+      this.setState({showMenu: false})
+    }, 3000)
   }
 
   render() {
     const {classes} = this.props
-
     return (
       <div className={classes.root}>
-        {this.state.showMenu ? <TempDrawer /> : null}
+        {this.state.showMenu ? <TempDrawer userId={this.props.userId} /> : null}
         <nav>
           {this.props.isLoggedIn ? (
             <div>
@@ -59,17 +68,18 @@ class Navbar extends React.Component {
                     className={classes.menuButton}
                     color="inherit"
                     aria-label="Menu"
-                    onClick={this.Onclick}
+                    onClick={this.onClick}
                   >
                     <MenuIcon />
                   </IconButton>
+                  <img src="hop.png" className={classes.img} />
 
                   <Typography
                     variant="title"
                     color="inherit"
                     className={classes.grow}
                   >
-                    STACKATHON
+                    BREW BUDDY
                   </Typography>
                   <Link to="/home">Home</Link>
                   <a href="#" onClick={this.props.handleClick}>
@@ -100,13 +110,13 @@ class Navbar extends React.Component {
                   >
                     <MenuIcon />
                   </IconButton>
-
+                  <img src="hop.png" className={classes.img} />
                   <Typography
                     variant="title"
                     color="inherit"
                     className={classes.grow}
                   >
-                    STACKATHON
+                    BREW BUDDY
                   </Typography>
                   <Link to="/login">Login</Link>
                   <Link to="/signup">Sign Up</Link>
@@ -122,12 +132,14 @@ class Navbar extends React.Component {
 
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 
 const mapDispatch = dispatch => {
   return {
+    getUser: () => dispatch(me()),
     handleClick() {
       dispatch(logout())
     }
