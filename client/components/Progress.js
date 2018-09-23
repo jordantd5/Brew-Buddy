@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {me} from '../store/user'
 import Empty from './Empty'
+import sensor from '../../temp'
 
 class Progress extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Progress extends React.Component {
     this.props.getUser(Number(this.props.match.params.userId))
   }
   render() {
+    console.log('TEMP', sensor)
     const recipe = this.props.recipe
     const ing = this.props.ing
     const status = this.props.user.status
