@@ -12,9 +12,7 @@ class MyBrews extends React.Component {
   render() {
     const recipe = this.props.recByUser
     //const ingredients = this.props.ingredients
-    return recipe ? (
-      <Progress key={recipe.id} recipe={recipe} ing={ingredients} />
-    ) : null
+    return recipe ? <Progress key={recipe.id} recipe={recipe} /> : null
   }
 }
 
