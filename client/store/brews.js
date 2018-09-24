@@ -4,13 +4,15 @@ import axios from 'axios'
 const initialState = {
   recipes: [],
   recByUser: [],
-  ingredients: []
+  ingredients: [],
+  userId: null
 }
 
 //action types
 const GOT_RECIPES = 'GOT_RECIPES'
 const GOT_RECIPES_BY_USER = 'GOT_RECIPES_BY_USER'
 const GOT_INGREDIENTS = 'GOT_INGREDIENTS'
+const STARTED = 'STARTED'
 
 //action creators
 const gotRecipes = recipes => ({type: GOT_RECIPES, recipes})
@@ -18,6 +20,8 @@ const gotRecipes = recipes => ({type: GOT_RECIPES, recipes})
 const gotRecipesByUser = recipes => ({type: GOT_RECIPES_BY_USER, recipes})
 
 const gotIngredients = ing => ({type: GOT_INGREDIENTS, ing})
+
+const started = userId => ({type: STARTED, userId})
 
 //thunk creators
 export const getRecipes = () => {
@@ -40,6 +44,16 @@ export const getIngredients = recipeId => {
   }
 }
 
+export const gettingStarted = (userId, status) => {
+  return async dispatch => {
+    const {data} = await axios.put('/api/mybrews/progress', {
+      userId: userId,
+      status: status
+    })
+    dispatch(started(userId))
+  }
+}
+
 //reducer
 const brewsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -57,6 +71,11 @@ const brewsReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: action.ing
+      }
+    case STARTED:
+      return {
+        ...state,
+        userId: action.userId
       }
     default:
       return state

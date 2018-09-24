@@ -3,7 +3,6 @@ import {gettingStarted} from '../store/brews'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
-//material ui
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -17,26 +16,25 @@ const styles = theme => ({
   }
 })
 
-class Empty extends React.Component {
+class Bottle extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleSubmit() {
-    this.props.getStarted(this.props.user.id, 'fermenting!')
-    this.props.history.push(`/mybrews/${this.props.user.id}/fermenting`)
+    this.props.getStarted(this.props.user.id, 'carbonating!')
+    this.props.history.push(`/mybrews/${this.props.user.id}/carbonating`)
   }
   render() {
     const {classes} = this.props
-    console.log('PROPS', this.props)
     return (
       <div>
         <div>
           <center>
             <h1>{this.props.recipe.name}</h1>
-            <h2>status: get started!</h2>
+            <h2>status: ready to bottle!</h2>
           </center>
-          <img src="/empty-01.png" height="500" />
+          <img src="/mid-01.png" height="500" />
         </div>
         <div>
           <Button
@@ -45,16 +43,12 @@ class Empty extends React.Component {
             type="submit"
             onClick={this.handleSubmit}
           >
-            GET STARTED!
+            DONE BOTTLING!
           </Button>
         </div>
       </div>
     )
   }
-}
-
-Empty.propTypes = {
-  classes: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {
@@ -72,6 +66,11 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
+
+Bottle.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
 export default withStyles(styles)(
-  withRouter(connect(mapStateToProps, mapDispatchToProps)(Empty))
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(Bottle))
 )

@@ -10,7 +10,10 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <center>
+        <h1>Welcome, {email}</h1>
+        <img src="/full-01.png" height="500" />
+      </center>
     </div>
   )
 }

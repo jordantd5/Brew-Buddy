@@ -2,8 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {me} from '../store/user'
+import {getRecipesByUser} from '../store/brews'
 import Empty from './Empty'
-import sensor from '../../temp'
+import Fermenting from './Fermenting'
 
 class Progress extends React.Component {
   constructor(props) {
@@ -11,16 +12,16 @@ class Progress extends React.Component {
   }
   componentDidMount() {
     this.props.getUser(Number(this.props.match.params.userId))
+    this.props.getRecipe(Number(this.props.match.params.userId))
   }
   render() {
-    console.log('TEMP', sensor)
-    const recipe = this.props.recipe
-    const ing = this.props.ing
     const status = this.props.user.status
     if (status === 'just getting started!') {
-      return <Empty recipe={recipe} ing={ing} />
+      return <Empty />
     }
-    // if (status = 'fermenting!')
+    if (status === 'fermenting!') {
+      return <Fermenting />
+    }
     // if (status = 'ready to bottle!')
     // if (status = 'carbonating!')
   }
@@ -28,13 +29,15 @@ class Progress extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    recipe: state.brews.recByUser
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: userId => dispatch(me(userId))
+    getUser: userId => dispatch(me(userId)),
+    getRecipe: userId => dispatch(getRecipesByUser(userId))
   }
 }
 
