@@ -7,11 +7,11 @@ import Progress from './Progress'
 class MyBrews extends React.Component {
   async componentDidMount() {
     await this.props.getRecByUser(Number(this.props.match.params.userId))
-    await this.props.getIng(this.props.recByUser.id)
+    //await this.props.getIng(this.props.recByUser.id)
   }
   render() {
     const recipe = this.props.recByUser
-    const ingredients = this.props.ingredients
+    //const ingredients = this.props.ingredients
     return recipe ? (
       <Progress key={recipe.id} recipe={recipe} ing={ingredients} />
     ) : null
