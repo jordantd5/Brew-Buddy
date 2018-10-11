@@ -52,10 +52,10 @@ const IndBrew = props => {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
+            Start Recipe!
           </Button>
           <Button size="small" color="primary">
-            Learn More
+            See Instructions!
           </Button>
         </CardActions>
       </Card>

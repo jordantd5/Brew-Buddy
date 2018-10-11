@@ -37,21 +37,25 @@ class Fermenting extends React.Component {
             <h1>{this.props.recipe.name}</h1>
             <h2>status: carbonating</h2>
           </center>
-          <img src="/mid-01.png" height="500" />
         </div>
-        <div>
-          <h2>time left to carbonate:</h2>
-          <Countdown date={Date.now() + 1209640000}>
-            <Finished />
-          </Countdown>
-          <Button
-            variant="contained"
-            className={classes.button}
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            DONE CARBONATING!
-          </Button>
+        <div id="wrapper">
+          <div id="leftcolumn">
+            <img src="/mid-01.png" height="500" />
+          </div>
+          <div id="rightcolumn">
+            <h2>time left to carbonate:</h2>
+            <Countdown date={Date.now() + 1209640000}>
+              <Finished />
+            </Countdown>
+            <Button
+              variant="contained"
+              className={classes.button}
+              type="submit"
+              onClick={this.handleSubmit}
+            >
+              DONE CARBONATING!
+            </Button>
+          </div>
         </div>
       </div>
     )

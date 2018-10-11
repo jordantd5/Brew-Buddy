@@ -34,17 +34,21 @@ class Bottle extends React.Component {
             <h1>{this.props.recipe.name}</h1>
             <h2>status: ready to bottle!</h2>
           </center>
-          <img src="/mid-01.png" height="500" />
         </div>
-        <div>
-          <Button
-            variant="contained"
-            className={classes.button}
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            DONE BOTTLING!
-          </Button>
+        <div id="wrapper">
+          <div id="leftcolumn">
+            <img src="/mid-01.png" height="500" />
+          </div>
+          <div id="rightcolumn">
+            <Button
+              variant="contained"
+              className={classes.button}
+              type="submit"
+              onClick={this.handleSubmit}
+            >
+              DONE BOTTLING!
+            </Button>
+          </div>
         </div>
       </div>
     )

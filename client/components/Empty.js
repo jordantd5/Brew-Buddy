@@ -35,17 +35,21 @@ class Empty extends React.Component {
             <h1>{this.props.recipe.name}</h1>
             <h2>status: get started!</h2>
           </center>
-          <img src="/empty-01.png" height="500" />
         </div>
-        <div>
-          <Button
-            variant="contained"
-            className={classes.button}
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            GET STARTED!
-          </Button>
+        <div id="wrapper">
+          <div id="leftcolumn">
+            <img src="/empty-01.png" height="500" />
+          </div>
+          <div id="rightcolumn">
+            <Button
+              variant="contained"
+              className={classes.button}
+              type="submit"
+              onClick={this.handleSubmit}
+            >
+              GET STARTED!
+            </Button>
+          </div>
         </div>
       </div>
     )

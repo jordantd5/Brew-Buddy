@@ -19,3 +19,20 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#wrapper {
+  width: 1005px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#leftcolumn {
+  float: left;
+}
+
+#rightcolumn {
+  float: right;
+  margin-left: 10px;
+  margin-right: 100px;
+  align-content: right;
+}

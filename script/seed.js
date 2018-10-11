@@ -18,7 +18,7 @@ const users = [
 const recipes = [
   {
     name: 'Chocolate Peanut Butter Oatmeal Stout',
-    image: 'no-image.png',
+    image: 'full-01.png',
     url:
       'https://www.brewersfriend.com/homebrew/recipe/view/109747/chocolate-peanut-butter-oatmeal-stout',
     batchSize: 5.5,
@@ -30,7 +30,7 @@ const recipes = [
   },
   {
     name: 'Bavarian Hefeweizen',
-    image: 'no-image.png',
+    image: 'full-01.png',
     url:
       'https://www.brewersfriend.com/homebrew/recipe/view/9004/bavarian-hefeweizen',
     batchSize: 5.25,
@@ -171,10 +171,22 @@ const ingInRecipes = [
   }
 ]
 
+// let createdRecipes
+// let createdUsers
+
 function seed() {
   return Promise.all(users.map(user => User.create(user)))
-    .then(() => Promise.all(recipes.map(recipe => Recipe.create(recipe))))
-    .then(() => Promise.all(types.map(type => Type.create(type))))
+    .then(() => {
+      //createdUsers = newUsers
+      Promise.all(recipes.map(recipe => Recipe.create(recipe)))
+    })
+    .then(() => {
+      //createdRecipes = newRecipes
+      Promise.all(types.map(type => Type.create(type)))
+      // const newOne = createdRecipes[0].addUsers(createdUsers[0])
+      // const newTwo = createdRecipes[1].addUsers(createdUsers[1])
+      // return newOne, newTwo
+    })
     .then(() => Promise.all(ingredients.map(ing => Ingredient.create(ing))))
     .then(() => Promise.all(ingInRecipes.map(ing => IngInRecipe.create(ing))))
     .catch(error => console.error(error))

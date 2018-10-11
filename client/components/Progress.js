@@ -5,11 +5,11 @@ import {me} from '../store/user'
 import {getRecipesByUser} from '../store/brews'
 import Empty from './Empty'
 import Fermenting from './Fermenting'
+import Bottle from './Bottle'
+import Carbonate from './Carbonate'
+import Ready from './Ready'
 
 class Progress extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     this.props.getUser(Number(this.props.match.params.userId))
     this.props.getRecipe(Number(this.props.match.params.userId))
@@ -22,8 +22,15 @@ class Progress extends React.Component {
     if (status === 'fermenting!') {
       return <Fermenting />
     }
-    // if (status = 'ready to bottle!')
-    // if (status = 'carbonating!')
+    if (status === 'ready to bottle!') {
+      return <Bottle />
+    }
+    if (status === 'carbonating!') {
+      return <Carbonate />
+    }
+    if (status === 'drink up!') {
+      return <Ready />
+    }
   }
 }
 

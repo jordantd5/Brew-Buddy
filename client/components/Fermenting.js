@@ -37,31 +37,35 @@ class Fermenting extends React.Component {
             <h1>{this.props.recipe.name}</h1>
             <h2>status: fermenting!</h2>
           </center>
-          <img src="/mid-01.png" height="500" />
         </div>
-        <div>
-          <h2>time left to ferment:</h2>
-          <Countdown date={Date.now() + 1209640000}>
-            <Finished />
-          </Countdown>
-          <Button
-            variant="contained"
-            className={classes.button}
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            START BOTTLING!
-          </Button>
-        </div>
-        <div>
-          <iframe
-            width="400"
-            height="280"
-            allowtransparency="true"
-            scrolling="no"
-            frameBorder="no"
-            src="https://widgets.wia.io/embed/wgt_gnxQofv5/dev_QPY0ZvNd"
-          />
+        <div id="wrapper">
+          <div id="leftcolumn">
+            <img src="/mid-01.png" height="500" />
+          </div>
+          <div id="rightcolumn">
+            <h2>time left to ferment:</h2>
+            <Countdown date={Date.now() + 1209640000}>
+              <Finished />
+            </Countdown>
+            <Button
+              variant="contained"
+              className={classes.button}
+              type="submit"
+              onClick={this.handleSubmit}
+            >
+              START BOTTLING!
+            </Button>
+          </div>
+          <div>
+            <iframe
+              width="400"
+              height="280"
+              allowtransparency="true"
+              scrolling="no"
+              frameBorder="no"
+              src="https://widgets.wia.io/embed/wgt_gnxQofv5/dev_QPY0ZvNd"
+            />
+          </div>
         </div>
       </div>
     )
